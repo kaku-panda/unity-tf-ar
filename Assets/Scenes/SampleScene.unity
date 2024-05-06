@@ -182,101 +182,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159735857}
   m_CullTransparentMesh: 0
---- !u!1 &580359811
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 580359814}
-  - component: {fileID: 580359815}
-  - component: {fileID: 580359816}
-  - component: {fileID: 580359812}
-  m_Layer: 0
-  m_Name: SSD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &580359812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580359811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87850b97b9bac4492a25b2e901fa3573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  options:
-    modelPath: coco_ssd_mobilenet_quant.tflite
-    aspectMode: 1
-    delegateType: 2
-  frameContainer: {fileID: 159735859}
-  framePrefab: {fileID: 4550351299274634197, guid: d2741611142d247e58001f85dfef3809,
-    type: 3}
-  scoreThreshold: 0.797
-  labelMap: {fileID: 4900000, guid: 4ca5863b2954741339961ab599776345, type: 3}
-  arCamera: {fileID: 1994189639}
-  raycastManager: {fileID: 1636850103}
-  highlightPrefab: {fileID: 8994136131117865381, guid: 0bc7eb66a658d4542b2a3d860b4601bf,
-    type: 3}
-  centerMarker: {fileID: 1859654175}
---- !u!4 &580359814
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580359811}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &580359815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580359811}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be5e5635fba104ec29475e42f3b5a517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  sourceForEditor: {fileID: 0}
-  trimToScreenAspect: 0
-  OnTexture:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAspectChange:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &580359816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580359811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f828f1c26f0544f298bcffcc9105474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraManager: {fileID: 1994189637}
-  _ssdSample: {fileID: 580359812}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +378,7 @@ GameObject:
   - component: {fileID: 1636850100}
   - component: {fileID: 1636850103}
   - component: {fileID: 1636850104}
+  - component: {fileID: 1636850105}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -492,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 3035130623148942029, guid: 6e79a26169a054fa6b64f96716de1cc4,
+  m_PlanePrefab: {fileID: 3365277455186935206, guid: fdf2528be4be34e15898d7924f8e600a,
     type: 3}
   m_DetectionMode: -1
 --- !u!114 &1636850101
@@ -540,7 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RaycastPrefab: {fileID: 0}
+  m_RaycastPrefab: {fileID: 7477821415817592160, guid: 6a8d857d8706540509e4fcd02ea92f74,
+    type: 3}
 --- !u!114 &1636850104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +464,20 @@ MonoBehaviour:
   labelPrefab: {fileID: 2046971479175540100, guid: 48a3ac43e1f244646a408ce0c076b5d0,
     type: 3}
   arCamera: {fileID: 1994189639}
+--- !u!114 &1636850105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636850099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab0e80cee9cc1d44928bfe488dd1e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PointCloudPrefab: {fileID: 6657629305977332136, guid: 5aebd04331b5b4bd2a970fd44365960f,
+    type: 3}
 --- !u!1 &1661100461
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +665,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 159735858}
-  - {fileID: 1859654174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -752,81 +672,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1859654173
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1859654174}
-  - component: {fileID: 1859654176}
-  - component: {fileID: 1859654175}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1859654174
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859654173}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1686912101}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 5}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1859654175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859654173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.23624134, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c8bfcaed6a8f74f6abe4de81d81f322f, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1859654176
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859654173}
-  m_CullTransparentMesh: 1
 --- !u!1 &1994189633
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +687,7 @@ GameObject:
   - component: {fileID: 1994189636}
   - component: {fileID: 1994189635}
   - component: {fileID: 1994189640}
+  - component: {fileID: 1994189641}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1068,6 +914,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3920041929e854f1e8811e52780f38bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1994189641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994189633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6fc31a63c8e94f1c90cb7eb5efdb9ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCameraManager: {fileID: 1994189637}
+  options:
+    modelPath: coco_ssd_mobilenet_quant.tflite
+    aspectMode: 1
+    delegateType: 2
+  framePrefab: {fileID: 4550351299274634197, guid: d2741611142d247e58001f85dfef3809,
+    type: 3}
+  frameContainer: {fileID: 159735859}
+  scoreThreshold: 0.5
+  arCamera: {fileID: 1994189639}
+  raycastManager: {fileID: 1636850103}
+  objectPrefab: {fileID: 8994136131117865381, guid: 0bc7eb66a658d4542b2a3d860b4601bf,
+    type: 3}
+  labelMap: {fileID: 4900000, guid: 4ca5863b2954741339961ab599776345, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1077,4 +949,3 @@ SceneRoots:
   - {fileID: 1636850102}
   - {fileID: 1686912101}
   - {fileID: 896198639}
-  - {fileID: 580359814}

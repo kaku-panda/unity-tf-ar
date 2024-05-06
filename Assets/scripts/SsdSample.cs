@@ -30,21 +30,17 @@ public class SsdSample : MonoBehaviour
     private ARRaycastManager raycastManager;
 
     [SerializeField]
-    private GameObject highlightPrefab; // ハイライト用のプレハブ
+    private GameObject objectPrefab;
 
-    private GameObject highlightInstance; // ハイライトインスタンス
     private SSD ssd;
     private Text[] frames;
     private string[] labels;
+    private GameObject activeObject; // 現在アクティブなオブジェクト
     private List<ARRaycastHit> raycastHits = new List<ARRaycastHit>();
 
     private void Start()
     {
         ssd = new SSD(options);
-
-        // ハイライト用インスタンスを生成し、デフォルトで非表示に
-        highlightInstance = Instantiate(highlightPrefab);
-        highlightInstance.SetActive(false);
 
         // Init frames
         frames = new Text[10];
@@ -96,8 +92,6 @@ public class SsdSample : MonoBehaviour
         }
     }
 
-    [SerializeField] private Image centerMarker; 
-
     private void SetFrame(Text frame, SSD.Result result, Vector2 size)
     {
         if (result.score < scoreThreshold)
@@ -111,19 +105,34 @@ public class SsdSample : MonoBehaviour
         rt.anchoredPosition = result.rect.position * size - size * 0.5f;
         rt.sizeDelta = result.rect.size * size;
 
-        // バウンディングボックスの中心座標をCanvas上で計算
-        Vector2 boxCenterCanvas = rt.anchoredPosition + new Vector2(rt.sizeDelta.x / 2, -rt.sizeDelta.y / 2);
+        // RectTransformからターゲットを生成し、中心に配置
+        RectTransform sourceRect = rt.GetComponent<RectTransform>();
+        RectTransform targetRect = CreateNewTargetRectTransform(sourceRect);
+        SetRectTransformToCenter(sourceRect, targetRect);
+
+        // 既存のオブジェクトを削除
+        if (activeObject != null)
+        {
+            Destroy(activeObject);
+        }
 
         // Canvas上の座標をスクリーン座標に変換
-        //Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint// // arCamera, rt.TransformPoint(boxCenterCanvas));
-        
-        float screenWidth = Screen.width;
-        float screenHeight = Screen.height;
-        Vector2 screenPosition = new Vector2(0, 0);
-        
-        // `Image`の位置をスクリーン座標に更新
-        RectTransform markerRect = centerMarker.GetComponent<RectTransform>();
-        markerRect.position = screenPosition;
+        Vector2 screenPosition = DisplayScreenPosition(targetRect);
+
+        // スクリーン座標でレイキャストを実行
+        Ray ray = arCamera.ScreenPointToRay(screenPosition);
+        if (raycastManager.Raycast(ray, raycastHits, TrackableType.AllTypes))
+        {
+            // ヒットした位置でオブジェクトを配置
+            float distance = Vector3.Distance(arCamera.transform.position, raycastHits[0].pose.position);
+
+            frame.text = $"{GetLabelName(result.classID)} : {(int)(result.score * 100)}%\nDistance: {distance:F2} meters";
+            activeObject = Instantiate(objectPrefab, raycastHits[0].pose.position, raycastHits[0].pose.rotation);
+        }
+        else
+        {
+            frame.text = $"{GetLabelName(result.classID)} : {(int)(result.score * 100)}%";
+        }
 
         // バウンディングボックス自体の表示を有効にする
         frame.gameObject.SetActive(true);
@@ -138,14 +147,51 @@ public class SsdSample : MonoBehaviour
         return labels[id + 1];
     }
 
-    private Vector2 CanvasToScreenPosition(RectTransform canvasRect, Vector2 canvasPosition)
+    private Vector2 GetScreenPositionFromAnchoredPosition(RectTransform rectTransform)
     {
-        // ワールド座標に変換
-        Vector3 worldPosition = canvasRect.TransformPoint(canvasPosition);
+        // アンカー基準のワールド座標を取得
+        Vector3 worldPosition = rectTransform.TransformPoint(Vector3.zero);
 
         // ワールド座標をスクリーン座標に変換
-        Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(arCamera, worldPosition);
+        Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(Camera.main, worldPosition);
 
         return screenPosition;
+    }
+
+    private Vector2 DisplayScreenPosition(RectTransform canvasPoint)
+    {
+        // 任意の`RectTransform`のスクリーン座標を取得
+        Vector2 screenPosition = GetScreenPositionFromAnchoredPosition(canvasPoint);
+
+        Debug.Log($"Screen Position: X={screenPosition.x}, Y={screenPosition.y}");
+
+        return screenPosition;
+    }
+
+    private void SetRectTransformToCenter(RectTransform source, RectTransform target)
+    {
+        // ピボットとサイズから中心座標を計算
+        Vector2 centerPosition = source.anchoredPosition + new Vector2(source.sizeDelta.x / 2, -source.sizeDelta.y / 2);
+
+        // 中心座標をターゲットの`anchoredPosition`に設定
+        target.anchoredPosition = centerPosition;
+
+        // 必要に応じて、ターゲットのサイズを調整
+        target.sizeDelta = source.sizeDelta;
+    }
+
+    private RectTransform CreateNewTargetRectTransform(Transform parent)
+    {
+        // 新しい`GameObject`を生成し、`RectTransform`を追加
+        GameObject newGameObject = new GameObject("TargetRectTransform");
+        newGameObject.transform.SetParent(parent, false);
+
+        // 新しい`RectTransform`を取得
+        RectTransform newRectTransform = newGameObject.AddComponent<RectTransform>();
+
+        // 初期サイズの設定
+        newRectTransform.sizeDelta = new Vector2(100, 100); // 適切な初期サイズを設定してください
+
+        return newRectTransform;
     }
 }

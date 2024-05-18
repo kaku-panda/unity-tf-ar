@@ -67,27 +67,27 @@
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/TfLiteDelegateType.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/BaseImagePredictor.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/TextureToNativeTensorDataTypes.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/TextureToNativeTensor.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/FileUtil.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/CameraTextureBackground.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/MathTF.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/RectExtension.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/DeviceNameAttribute.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/MatrixExtension.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/CameraTextureBackgroundRendererFeature.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/TextureResizer.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/ArrayExtension.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/InterpreterExtension.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/MicrophoneBuffer.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/AspectMode.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/WebCamUtil.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/InterpreterOptionsExtension.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/WebCamInput.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/TextureToNativeTensor.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/FileUtil.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/RectExtension.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/MatrixExtension.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/ArrayExtension.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/AspectMode.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/PrimitiveDraw.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/BaseVisionTask.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/DisposeUtil.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/FilePopupAttribute.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/TextureToTensor.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/WebCamInput.cs" />
     <Compile Include="Packages/com.github.asus4.tflite.common/Runtime/TensorToTexture.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -980,6 +980,10 @@
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.UI">

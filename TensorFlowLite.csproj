@@ -65,14 +65,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/SignatureRunner.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite/Runtime/Delegates/XNNPackDelegate.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/InterpreterOptions.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/InterpreterExperimental.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/ErrorReporter.cs" />
-    <Compile Include="Packages/com.github.asus4.tflite/Runtime/Delegates/GpuDelegateV2.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/BuiltinOps.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/Delegates/NNAPIDelegate.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/Delegates/GlDelegate.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite/Runtime/Delegates/XNNPackDelegate.cs" />
+    <Compile Include="Packages/com.github.asus4.tflite/Runtime/Delegates/GpuDelegateV2.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/Interpreter.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/Delegates/MetalDelegate.cs" />
     <Compile Include="Packages/com.github.asus4.tflite/Runtime/IDelegate.cs" />

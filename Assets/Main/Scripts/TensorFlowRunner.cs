@@ -229,11 +229,9 @@ public class TensorFlowRunner : MonoBehaviour
 
         // アンカーポジションとサイズを設定
         var frameRect = frame.GetComponent<RectTransform>();
-        var boxRect   = images[2].rectTransform;
 
         frameRect.anchoredPosition = result.rect.position * size - size * 0.5f;
         frameRect.sizeDelta        = result.rect.size * size;
-        // boxRect.sizeDelta          = result.rect.size * size;
 
         // テキストの色を設定
         labels[0].color = Color.white;
@@ -261,7 +259,7 @@ public class TensorFlowRunner : MonoBehaviour
         Vector2 screenPosition = GetScreenPositionFromRectTransform(centerRect);
 
         // スクリーン座標からオブジェクトを配置
-        Ray ray = arCamera.ScreenPointToRay(screenPosition);
+        Ray ray = arCamera.ScreenPointToRay(new Vector2(centerRect.position.x, centerRect.position.y));
         if (Physics.Raycast(ray, out RaycastHit hit, 10f))
         {
             float distance = Vector3.Distance(arCamera.transform.position, hit.point);
